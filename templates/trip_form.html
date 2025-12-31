@@ -4,103 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trip Form</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
     <style>
         body {
             min-height: 100vh;
-            background-color: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
             background-image: url('https://i.pinimg.com/originals/aa/bd/ef/aabdef645699b1228b87b79f8f645440.jpg');
             background-size: cover;
             background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Roboto', sans-serif;
         }
+
         .card {
             width: 100%;
             max-width: 500px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.85);
             padding: 2rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
-        .card-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
+
         .card-title {
+            text-align: center;
             font-size: 2rem;
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
             background: linear-gradient(to right, #3b82f6, #06b6d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1.5rem;
         }
-        .input {
-            background-color: rgba(30, 41, 59, 0.5);
-            border: 1px solid #1e293b;
-            color: #ffffff;
-            padding: 0.75rem;
-            width: calc(100% - 2rem);
-            margin: 0.5rem 0;
-            border-radius: 5px;
-            font-family: 'Roboto', sans-serif;
-        }
-        .button {
-            background: linear-gradient(to right, #3b82f6, #06b6d4);
-            color: white;
-            font-weight: medium;
-            transition: all 0.2s;
-            padding: 0.75rem;
-            width: 100%;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Roboto', sans-serif;
-        }
-        .button:hover {
-            background: linear-gradient(to right, #2563eb, #06b6d4);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
+
         label {
-            color: white;
-            margin-bottom: 0.5rem;
+            color: #fff;
+            margin-top: 0.75rem;
             display: block;
         }
+
+        .input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 0.3rem;
+            background-color: rgba(30, 41, 59, 0.6);
+            border: 1px solid #1e293b;
+            color: #fff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 2px rgba(56,189,248,0.3);
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 1.2rem;
+            padding: 0.75rem;
+            background: linear-gradient(to right, #3b82f6, #06b6d4);
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: linear-gradient(to right, #2563eb, #06b6d4);
+        }
+
         footer {
-            text-align: center;
             margin-top: 1.5rem;
-            color: white;
+            text-align: center;
+            color: #ddd;
             font-size: 0.9rem;
         }
     </style>
 </head>
+
 <body>
     <div class="card">
-        <div class="card-header">
-            <h1 class="card-title">Trip Form</h1>
-        </div>
+        <h1 class="card-title">Trip Form</h1>
+
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <div>
-                <label for="departure">Departure:</label>
-                <input type="date" id="departure" name="departure" class="input" required>
-            </div>
-            <div>
-                <label for="return">Return:</label>
-                <input type="date" id="return" name="return" class="input" required>
-            </div>
+
+            <label>From</label>
+            <input type="text" name="from_location" class="input" required>
+
+            <label>To</label>
+            <input type="text" name="to_location" class="input" required>
+
+            <label>Departure Date</label>
+            <input type="date" name="departure" class="input" required>
+
+            <label>Return Date</label>
+            <input type="date" name="return" class="input" required>
 
             <button type="submit" class="button">Submit</button>
         </form>
+
         <footer>
-            &copy; 2024 Team ERROR 404. All rights reserved.
+            © 2024 Team ERROR 404. All rights reserved.
         </footer>
-    </body>
-    </html>
     </div>
 </body>
 </html>
