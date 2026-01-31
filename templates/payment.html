@@ -100,6 +100,25 @@
             color: var(--success-color);
         }
 
+        .complete-btn {
+            display: none;
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .complete-btn:hover {
+            background-color: #059669;
+        }
+
         .spinner {
             width: 20px;
             height: 20px;
@@ -148,6 +167,8 @@
             <div class="spinner"></div>
             Waiting for payment...
         </div>
+
+        <button type="button" id="complete-btn" class="complete-btn" onclick="completeBooking()">Complete Booking</button>
     </div>
 
     <script>
@@ -158,7 +179,7 @@
                 const minutes = parseInt(timer / 60, 10);
                 const seconds = parseInt(timer % 60, 10);
 
-                display.textContent = ${minutes}:${seconds < 10 ? '0' : ''}${seconds};
+                display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
                 if (--timer < 0) {
                     clearInterval(interval);
@@ -181,8 +202,18 @@
                 status.classList.remove('pending');
                 status.classList.add('success');
                 status.innerHTML = '<i class="fas fa-check-circle"></i> Payment completed';
+                
+                // Show complete button after payment
+                const completeBtn = document.getElementById('complete-btn');
+                if (completeBtn) {
+                    completeBtn.style.display = 'block';
+                }
             }, 5000); // Simulate after 5 seconds
         });
+
+        function completeBooking() {
+            window.location.href = '{% url 'booking_success' %}';
+        }
     </script>
 </body>
 </html>

@@ -60,21 +60,59 @@
     <div class="container">
         <h1>Trip Details</h1>
 
-        <p>Current Location: {{ current_location }}</p>
-        <p>Destination: {{ destination }}</p>
-        <p>Budget: {{ budget }} Rs.</p>
-
-        {% if distance < 70 %}
-            <p>Recommended Transport: Bus</p>
-            <a href="https://www.makemytrip.com/bus-tickets/aictsl_campus-bus-stand.html" target="_blank" class="btn">Book Now</a>
-        {% elif distance >= 70 and distance < 1000 %}
-            <p>Recommended Transport: Train</p>
-            <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="btn">Book Now</a>
+        <p>Current Location: {{ current_location|default:"Not specified" }}</p>
+        <p>Destination: {{ destination|default:"Not specified" }}</p>
+        <p>Budget: Rs. {{ budget|default:"Not specified"|floatformat:2 }}</p>
+        {% if distance %}
+            <p>Distance: {{ distance|floatformat:2 }} km</p>
         {% else %}
-            <p>Recommended Transport: Airplane</p>
-            <a href="https://www.goindigo.in/" target="_blank" class="btn">Book Now</a>
+            <p>Distance: Not calculated</p>
         {% endif %}
-        <button type="button" class="btn" onclick="window.location.href='{% url 'booking' %}'">Hotel booking</button>
+
+        {% if distance %}
+            {% if distance < 70 %}
+                <p>Recommended Transport: Bus</p>
+                <a href="https://www.makemytrip.com/bus-tickets/aictsl_campus-bus-stand.html" target="_blank" class="btn">Book Now</a>
+            {% elif distance < 1000 %}
+                <p>Recommended Transport: Train</p>
+                <a href="https://www.irctc.co.in/nget/train-search" target="_blank" class="btn">Book Now</a>
+            {% else %}
+                <p>Recommended Transport: Airplane</p>
+                <a href="https://www.goindigo.in/" target="_blank" class="btn">Book Now</a>
+            {% endif %}
+        {% else %}
+            <p style="color: #FF6B6B;">Unable to calculate distance. Please try again.</p>
+        {% endif %}
+        <a href="{% url 'booking' %}" class="btn" style="background-color: #2196F3; display: inline-block; margin-top: 15px;">Continue to Hotel Booking</a>
     </div>
+
+    <script>
+        // Ensure page is rendered properly
+        console.log('Success page loaded');
+        var distanceValue = {{ distance|default:0 }};
+        console.log('Distance:', distanceValue);
+        
+        // Store in a safe variable
+        if (typeof distanceValue !== 'undefined' && distanceValue !== null) {
+            console.log('Distance is valid:', distanceValue);
+        } else {
+            console.log('Distance is null or undefined');
+        }
+        
+        // Optional: Auto-redirect based on distance if needed
+        // Uncomment below for auto-redirect functionality
+        /*
+        if (distanceValue < 70) {
+            // Redirect to bus booking
+            // window.location.href = 'https://www.makemytrip.com/bus-tickets/';
+        } else if (distanceValue < 1000) {
+            // Redirect to train booking
+            // window.location.href = 'https://www.irctc.co.in/';
+        } else {
+            // Redirect to flight booking
+            // window.location.href = 'https://www.goindigo.in/';
+        }
+        */
+    </script>
 </body>
 </html>

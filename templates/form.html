@@ -98,7 +98,8 @@
   <div class="booking-page">
     <h2>Booking Now</h2>
 
-    <form class="booking-form">
+    <form class="booking-form" method="POST" action="{% url 'forming' %}">
+      {% csrf_token %}
       <!-- Billing Details Section -->
       <div class="billing-section">
         <h3>Billing Details</h3>
@@ -161,7 +162,8 @@
       </div>
 
       <!-- Submit Button -->
-      <button type="button" class="btn" onclick="window.location.href='{% url 'pay' %}'">Pay Now</button>
+      <button type="submit" class="btn">Proceed to Payment</button>
+      <a href="javascript:history.back()" style="display: inline-block; width: 100%; padding: 10px; text-align: center; margin-top: 10px; background-color: #6c757d; color: white; border-radius: 5px; text-decoration: none;">Back</a>
     </form>
   </div>
   <footer>

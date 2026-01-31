@@ -338,12 +338,38 @@
                 <input id="budget" type="number" min="0" class="input" placeholder="Enter your budget" />
             </div>
             
-            <button class="button" onclick="alert('Searching for your perfect trip...')">Search</button>
+            <form method="POST" action="{% url 'trip_view' %}">
+                {% csrf_token %}
+                <input type="hidden" id="hidden-current" name="current_location" />
+                <input type="hidden" id="hidden-destination" name="destination" />
+                <input type="hidden" id="hidden-budget" name="budget" />
+                <button type="submit" class="button">Search</button>
+            </form>
         </div>
     </div>
     
     <footer>
         &copy; 2024 Team ERROR 404. All rights reserved.
     </footer>
+    
+    <script>
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const current = document.getElementById('current').value.trim();
+            const destination = document.getElementById('destination').value.trim();
+            const budget = document.getElementById('budget').value.trim();
+            
+            if (!current || !destination || !budget) {
+                e.preventDefault();
+                alert('Please fill in all required fields!');
+                return;
+            }
+            
+            // Populate hidden fields with form data
+            document.getElementById('hidden-current').value = current;
+            document.getElementById('hidden-destination').value = destination;
+            document.getElementById('hidden-budget').value = budget;
+        });
+    </script>
 </body>
 </html>
