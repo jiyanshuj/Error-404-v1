@@ -1,119 +1,242 @@
-# Travel Booking Application
+# Error 404 Travel Planner ✈️
 
-## Description
-This is a Django-based web application for planning and booking travel. Users can search for destinations, view hotel listings, and make bookings. The application integrates with the TomTom API to fetch geographical data and routes.
+A modern Django-based intelligent travel planning and hotel booking application that helps users find the best transportation options based on distance.
 
-## Features
-- Search for travel destinations
-- View hotel listings with details
-- Book hotels and view booking details
-- Payment processing with QR code generation
+**Live Demo:** https://error-404-v1-1.onrender.com/
 
-## Technologies Used
-- Django (Python)
-- React (JavaScript)
-- Vite (for React app)
-- TomTom API (for geolocation and routing)
-- HTML/CSS for frontend design
+## 📋 Description
 
-## Installation
+Error 404 Travel Planner is a comprehensive web application designed to simplify travel planning. The app helps users calculate distances between locations, recommends the most suitable transport mode (Bus, Train, or Flight), and facilitates hotel bookings. It integrates with the TomTom API for accurate geolocation and route calculation services.
+
+## ✨ Features
+
+### Core Features
+- **Trip Planning**: Enter your current location and destination to calculate the distance
+- **Smart Transport Recommendations**: 
+  - 🚌 **Bus** recommended for distances < 70 km
+  - 🚂 **Train** recommended for distances 70-1000 km
+  - ✈️ **Flight** recommended for distances > 1000 km
+- **Real-time Distance Calculation**: Uses TomTom API for accurate routing data
+- **Hotel Booking System**: Browse and book hotels at your destination
+- **Booking Management**: Complete booking workflow with guest details
+- **Payment Integration**: Secure payment processing for bookings
+
+### Technical Features
+- Responsive design with modern UI/UX
+- Session management for persistent user data
+- Error handling and validation
+- Production-ready deployment on Render
+- PostgreSQL database integration
+
+## 🛠️ Technologies Used
+
+### Backend
+- **Django** 6.0.1 - Python web framework
+- **Requests** - HTTP library for API calls
+- **PostgreSQL** - Database (via psycopg2-binary)
+- **Gunicorn** - Production WSGI server
+- **SQLite3** - Local development database
+
+### APIs & Services
+- **TomTom API** - Geocoding and route calculation
+- **Render** - Cloud deployment platform
+
+### Frontend
+- **HTML5/CSS3** - Markup and styling
+- **JavaScript** - Client-side interactivity
+- **Django Templates** - Server-side rendering
+
+## 📦 Installation
 
 ### Prerequisites
-- Python 3.x
-- Node.js and npm
-- Django
-- React
+- Python 3.10 or higher
+- pip (Python package manager)
+- Git
 
-### Clone the repository
-\\\ash
-git clone https://github.com/yourusername/travel-booking-app.git
-cd travel-booking-app
-\\\
+### Local Setup
 
-### Set up the Django backend
-1. Navigate to the project directory:
-   \\\ash
-   cd project
-   \\\
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/jiyanshuj/Error-404-v1.git
+   cd Error-404-v1
+   ```
 
-2. Install the required Python packages:
-   \\\ash
+2. **Create a virtual environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install dependencies**
+   ```bash
    pip install -r requirements.txt
-   \\\
+   ```
 
-3. Run database migrations:
-   \\\ash
+4. **Run database migrations**
+   ```bash
    python manage.py migrate
-   \\\
+   ```
 
-4. Start the Django development server:
-   \\\ash
+5. **Start the development server**
+   ```bash
    python manage.py runserver
-   \\\
+   ```
 
-### Set up the React frontend
-1. Navigate to the bookingg directory:
-   \\\ash
-   cd bookingg
-   \\\
+6. **Access the application**
+   - Open your browser and navigate to `http://127.0.0.1:8000/`
 
-2. Install the required Node packages:
-   \\\ash
-   npm install
-   \\\
+## 🚀 Usage
 
-3. Start the React development server:
-   \\\ash
-   npm run dev
-   \\\
+### Planning a Trip
+1. **Home Page**: Enter your current location and destination to calculate the distance
+2. **Distance Calculation**: The app calculates the distance and shows results
+3. **Transport Recommendation**: View the recommended transport mode
+4. **Book Transport**: Click "Book Now" to access booking platforms
 
-## Usage
-- Open your browser and go to \http://127.0.0.1:8000\ for the Django backend.
-- Open another tab and go to \http://localhost:3000\ for the React frontend.
+### Hotel Booking
+1. **Select Transport**: Choose your transport and proceed
+2. **Browse Hotels**: View available hotels at your destination
+3. **Enter Details**: Fill in guest information (name, email, phone, address)
+4. **Payment**: Complete payment to finalize booking
+5. **Confirmation**: Receive booking confirmation with booking ID
 
-## Folder Structure
+## 📁 Project Structure
 
-project/
+```
+Error-404-v1/
+├── manage.py                 # Django management script
+├── db.sqlite3               # Local SQLite database
+├── requirements.txt         # Python dependencies
 │
-├── manage.py                # Django management script
-├── project/                 # Django project settings
-│   ├── __init__.py
-│   ├── settings.py          # Project settings
-│   ├── urls.py              # URL routing
-│   ├── wsgi.py              # WSGI configuration
-│   └── asgi.py              # ASGI configuration
+├── project/                 # Django project configuration
+│   ├── settings.py          # Project settings & configuration
+│   ├── urls.py              # URL routing configuration
+│   ├── wsgi.py              # WSGI application
+│   └── asgi.py              # ASGI application
 │
-├── web/                     # Django app for web functionalities
-│   ├── __init__.py
-│   ├── admin.py             # Admin configurations
-│   ├── apps.py              # App configurations
-│   ├── forms.py             # Django forms
+├── web/                     # Main Django application
+│   ├── views.py             # View functions and business logic
+│   ├── urls.py              # URL patterns
+│   ├── forms.py             # Django forms (TripForm)
+│   ├── api.py               # TomTom API integration
 │   ├── models.py            # Database models
-│   ├── tests.py             # Test cases
-│   ├── urls.py              # URL routing for the app
-│   └── views.py             # View functions
+│   ├── api_mock.py          # Mock API for testing
+│   └── migrations/          # Database migrations
 │
 ├── templates/               # HTML templates
-│   ├── booking.html         # Booking page template
-│   ├── form.html            # Payment form template
-│   ├── success.html         # Success page template
-│   └── trip_form.html       # Trip form template
+│   ├── home.html           # Landing page
+│   ├── trip_form.html      # Trip planning form
+│   ├── success.html        # Results & transport recommendation
+│   ├── booking.html        # Hotel booking page
+│   ├── form.html           # Guest details form
+│   ├── payment.html        # Payment processing
+│   ├── booking_success.html # Booking confirmation
+│   └── error.html          # Error page
 │
-└── bookingg/                # React frontend
-    ├── src/                 # Source files for React
-    │   ├── components/       # React components
-    │   ├── App.jsx           # Main React component
-    │   └── main.jsx          # Entry point for React
-    ├── package.json          # Node.js package configuration
-    └── vite.config.js        # Vite configuration
-\\\
+└── static/                 # Static files (CSS, JS, images)
+```
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+## 🔧 Configuration
 
-## License
+### Environment Variables
+Set up the following in your environment or `.env` file:
+
+```
+TOMTOM_API_KEY=your_tomtom_api_key_here
+DEBUG=False  # Set to True for development
+ALLOWED_HOSTS=.onrender.com,localhost,127.0.0.1
+```
+
+### TomTom API Setup
+1. Sign up at [TomTom Developer Portal](https://developer.tomtom.com/)
+2. Get your API key
+3. Add the key to `web/api.py`
+
+## 🌐 Deployment
+
+The application is deployed on [Render](https://render.com/) and is live at:
+**https://error-404-v1-1.onrender.com/**
+
+### Deploy Steps
+1. Push your code to GitHub
+2. Connect your GitHub repository to Render
+3. Configure build and start commands:
+   - **Build**: `pip install -r requirements.txt && python manage.py migrate`
+   - **Start**: `gunicorn project.wsgi:application`
+4. Set environment variables in Render dashboard
+5. Deploy!
+
+## 🧪 Testing
+
+Run tests with:
+```bash
+python manage.py test
+```
+
+### Test Coverage
+- Trip form validation
+- API integration
+- Distance calculation
+- Booking workflow
+
+## 📝 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Home page & trip form |
+| POST | `/` | Submit trip details |
+| GET | `/booking/` | Hotel booking page |
+| POST | `/forming/` | Guest details form |
+| GET | `/pay/` | Payment page |
+| POST | `/pay/` | Process payment |
+| GET | `/success/` | Booking confirmation |
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**"No such table: django_session"**
+```bash
+python manage.py migrate
+```
+
+**TomTom API errors**
+- Verify API key in `web/api.py`
+- Check internet connection
+- Ensure location names are valid
+
+**Database errors**
+- Run migrations: `python manage.py migrate`
+- Reset database: `python manage.py flush` (development only)
+
+## 🤝 Contributing
+
+Contributions are welcome! Please:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-- Thanks to the TomTom API for providing geolocation services.
-- Thanks to the Django and React communities for their support and resources.
+## 👥 Author
+
+**Jiyanshu Jain**
+
+## 🙏 Acknowledgments
+
+- [TomTom API](https://developer.tomtom.com/) - For geolocation and routing services
+- [Django Framework](https://www.djangoproject.com/) - For the web framework
+- [Render](https://render.com/) - For hosting and deployment
+- The open-source community for various tools and libraries
+
+## 📞 Support
+
+For issues, questions, or suggestions, please open a [GitHub Issue](https://github.com/jiyanshuj/Error-404-v1/issues)
+
+---
+
+**Made with ❤️ by Jiyanshu Jain**
