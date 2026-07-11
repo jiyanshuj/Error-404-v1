@@ -1,12 +1,12 @@
-# Error 404 Travel Planner ✈️
+# GoPlan ✈️
 
 A modern Django-based intelligent travel planning and hotel booking application that helps users find the best transportation options based on distance.
 
-**Live Demo:** https://error-404-v1-1.onrender.com/
+**Live Demo:** https://goplan.onrender.com/
 
 ## 📋 Description
 
-Error 404 Travel Planner is a comprehensive web application designed to simplify travel planning. The app helps users calculate distances between locations, recommends the most suitable transport mode (Bus, Train, or Flight), and facilitates hotel bookings. It integrates with the TomTom API for accurate geolocation and route calculation services.
+GoPlan is a comprehensive web application designed to simplify travel planning. The app helps users calculate distances between locations, recommends the most suitable transport mode (Bus, Train, or Flight), and facilitates hotel bookings. It integrates with the TomTom API for accurate geolocation and route calculation services.
 
 ## ✨ Features
 
@@ -57,8 +57,8 @@ Error 404 Travel Planner is a comprehensive web application designed to simplify
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/jiyanshuj/Error-404-v1.git
-   cd Error-404-v1
+   git clone https://github.com/jiyanshuj/GoPlan.git
+   cd GoPlan
    ```
 
 2. **Create a virtual environment**
@@ -103,13 +103,13 @@ Error 404 Travel Planner is a comprehensive web application designed to simplify
 ## 📁 Project Structure
 
 ```
-Error-404-v1/
+GoPlan/
 ├── manage.py                 # Django management script
 ├── db.sqlite3               # Local SQLite database
 ├── requirements.txt         # Python dependencies
 │
-├── project/                 # Django project configuration
-│   ├── settings.py          # Project settings & configuration
+├── goplan/                  # Django project configuration
+│   ├── settings.py          # GoPlan settings & configuration
 │   ├── urls.py              # URL routing configuration
 │   ├── wsgi.py              # WSGI application
 │   └── asgi.py              # ASGI application
@@ -155,14 +155,14 @@ ALLOWED_HOSTS=.onrender.com,localhost,127.0.0.1
 ## 🌐 Deployment
 
 The application is deployed on [Render](https://render.com/) and is live at:
-**https://error-404-v1-1.onrender.com/**
+**https://goplan.onrender.com/**
 
 ### Deploy Steps
 1. Push your code to GitHub
 2. Connect your GitHub repository to Render
 3. Configure build and start commands:
    - **Build**: `pip install -r requirements.txt && python manage.py migrate`
-   - **Start**: `gunicorn project.wsgi:application`
+   - **Start**: `gunicorn goplan.wsgi:application`
 4. Set environment variables in Render dashboard
 5. Deploy!
 
@@ -235,7 +235,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For issues, questions, or suggestions, please open a [GitHub Issue](https://github.com/jiyanshuj/Error-404-v1/issues)
+For issues, questions, or suggestions, please open a [GitHub Issue](https://github.com/jiyanshuj/GoPlan/issues)
 
 ---
 
